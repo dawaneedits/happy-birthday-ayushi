@@ -1,0 +1,479 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Ayushi 💜</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+font-family:Poppins,sans-serif;
+background:linear-gradient(135deg,#170b32,#45145f,#a12c85);
+color:white;text-align:center;overflow-x:hidden;
+}
+.stars{
+position:fixed;inset:0;pointer-events:none;
+background-image:radial-gradient(white 1px,transparent 1px);
+background-size:45px 45px;opacity:.3;
+}
+.script{font-family:'Great Vibes',cursive;color:#ffd0ed}
+
+#opening,#countdown{
+min-height:100vh;display:flex;align-items:center;
+justify-content:center;padding:20px;position:relative;z-index:2;
+}
+.open-card{
+max-width:550px;width:100%;padding:40px 25px;
+border:1px solid #ffffff55;border-radius:30px;
+background:#ffffff18;backdrop-filter:blur(15px);
+box-shadow:0 0 50px #ff70d455;
+}
+.gift{font-size:100px;animation:bounce 1.5s infinite}
+@keyframes bounce{50%{transform:translateY(-18px) rotate(5deg)}}
+
+.open-card h1{font-size:clamp(40px,8vw,60px)}
+.open-card p{line-height:2;color:#ffe3f5;margin-top:20px}
+
+button{
+border:0;cursor:pointer;border-radius:50px;
+padding:14px 28px;margin-top:25px;
+font-weight:bold;color:white;
+background:linear-gradient(90deg,#ff52b5,#a45aff);
+box-shadow:0 0 25px #ff65cb88;
+transition:.3s;
+}
+button:hover{transform:scale(1.07)}
+
+#countdown{display:none}
+#countNumber{
+font-size:120px;font-weight:bold;color:#ffd0ed;
+text-shadow:0 0 35px #ff55bd;
+}
+@keyframes countZoom{
+0%{transform:scale(.3);opacity:0}
+60%{transform:scale(1.3);opacity:1}
+100%{transform:scale(1)}
+}
+
+#birthday{display:none;position:relative;z-index:1;padding:35px 18px}
+.hero{padding:25px 10px}
+.hero h1{
+font-size:clamp(35px,8vw,65px);
+text-shadow:0 0 25px #ff65cb;margin:15px 0;
+}
+.hero p{line-height:2;color:#ffe4f6;margin-top:15px}
+.main-photo{
+width:250px;height:250px;object-fit:cover;
+border-radius:50%;border:7px solid #ffd0ef;
+box-shadow:0 0 40px #ff69c9;margin:35px auto;display:block;
+}
+
+.music-btn{
+position:fixed;top:15px;right:12px;z-index:50;
+margin:0;
+}
+
+.section-title{
+font-family:'Great Vibes',cursive;
+font-size:48px;color:#ffd0ed;margin:40px 0 20px;
+}
+.letter{
+max-width:720px;margin:25px auto;padding:28px;
+border-radius:25px;background:#ffffff17;
+border:1px solid #ffffff55;line-height:2;text-align:left;
+}
+.letter h2{text-align:center;color:#ffb9e5;margin-bottom:20px}
+.letter p{margin-bottom:15px}
+
+.gallery{
+max-width:1000px;margin:30px auto;
+display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+}
+.photo-card{
+overflow:hidden;border-radius:20px;
+border:3px solid #ffd0ee;background:#ffffff15;
+box-shadow:0 0 20px #ff6dc555;transition:.4s;
+}
+.photo-card:hover{transform:translateY(-8px) scale(1.02)}
+.photo-card img{
+width:100%;height:250px;object-fit:cover;display:block;
+}
+.photo-card p{padding:12px;font-size:13px;color:#ffe3f5}
+
+.friendship{
+max-width:650px;margin:45px auto;padding:30px 20px;
+background:#ffffff18;border-radius:25px;
+border:1px solid #ffffff55;
+}
+.friendship h2{
+font-family:'Great Vibes';font-size:45px;color:#ffc7eb;
+}
+.friendship p{line-height:2;margin-top:15px}
+
+.heart,.confetti{position:fixed;pointer-events:none;z-index:20}
+.heart{bottom:-30px;animation:float 6s linear forwards}
+@keyframes float{
+to{transform:translateY(-110vh) rotate(360deg);opacity:0}
+}
+.confetti{top:-30px;animation:fall 4s linear forwards}
+@keyframes fall{
+to{transform:translateY(110vh) rotate(720deg);opacity:0}
+}
+footer{padding:35px 10px;line-height:2;color:#ffd1f0}
+
+@media(max-width:650px){
+.gallery{grid-template-columns:repeat(2,1fr);gap:12px}
+.photo-card img{height:190px}
+.main-photo{width:205px;height:205px}
+.letter{padding:22px}
+}
+@media(max-width:380px){
+.gallery{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="music" loop preload="auto">
+<source src="music/birthday.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" id="musicBtn"
+onclick="toggleMusic()" style="display:none">
+🔊 Music ON
+</button>
+
+
+<!-- FIRST SCREEN -->
+<section id="opening">
+<div class="open-card">
+
+<div class="gift">🎁</div>
+
+<h1 class="script">Hey Ayushi!</h1>
+
+<p>
+Today is your special day! 💗
+<br><br>
+I have something beautiful planned just for you.
+<br><br>
+Are you ready for the biggest surprise?
+</p>
+
+<button onclick="startCountdown()">
+GET READY! 💝
+</button>
+
+</div>
+</section>
+
+
+<!-- COUNTDOWN SCREEN -->
+<section id="countdown">
+<div class="open-card">
+
+<h1 class="script">Get Ready Ayushi! 💜</h1>
+
+<div id="countNumber">3</div>
+
+<h2 id="countText">Your Surprise is Coming! ✨</h2>
+
+</div>
+</section>
+
+
+<!-- BIRTHDAY PAGE -->
+<section id="birthday">
+
+<div class="hero">
+
+<div style="font-size:45px">🎉 🎂 🎉</div>
+
+<h1>HAPPY BIRTHDAY</h1>
+
+<h2 class="script" style="font-size:65px">
+Ayushi ❤️
+</h2>
+
+<p>
+Today is all about YOU!
+<br>
+May your day be as beautiful as your smile. 🌸
+</p>
+
+<img src="photos/friend.jpg" class="main-photo" alt="Ayushi">
+
+<h2 class="script" style="font-size:43px">
+My Favourite Bestie! 💜
+</h2>
+
+</div>
+
+
+<!-- FRIENDSHIP LETTER -->
+<h2 class="section-title">A Letter For You 💌</h2>
+
+<div class="letter">
+
+<h2>Dear Ayushi, ❤️</h2>
+
+<p>
+Happy Birthday to one of the most special people in my life! 🥹
+</p>
+
+<p>
+I don't know how to explain how important our friendship is to me.
+Some people come into our lives and make everything more beautiful.
+You are one of those people.
+</p>
+
+<p>
+Thank you for every laugh, every conversation, every silly moment
+and all the beautiful memories we have created together.
+</p>
+
+<p>
+I wish you endless happiness, lots of success, beautiful opportunities
+and everything your heart dreams of.
+</p>
+
+<p>
+No matter how busy life gets or how much things change,
+I hope our friendship always remains this special.
+</p>
+
+<p>
+Never stop smiling, never stop dreaming and always stay
+the wonderful person you are.
+</p>
+
+<p>
+I am really lucky to have a best friend like you.
+Thank you for being a part of my journey. 💗
+</p>
+
+<p style="text-align:center">
+<strong>
+HAPPY BIRTHDAY AYUSHI! 🎂
+<br><br>
+Lots of love and best wishes! 💜
+</strong>
+</p>
+
+<h2 class="script" style="font-size:40px">
+Forever Best Friends ♾️
+</h2>
+
+</div>
+
+
+<!-- 10 PHOTOS -->
+<h2 class="section-title">Our Beautiful Memories 📸</h2>
+
+<p style="color:#ffe3f5">
+10 Pictures, Countless Memories, One Beautiful Friendship! 💕
+</p>
+
+<div class="gallery">
+
+<div class="photo-card"><img src="photos/photo1.jpg"><p>Beautiful Memories 💗</p></div>
+<div class="photo-card"><img src="photos/photo2.jpg"><p>Our Special Moments 🌸</p></div>
+<div class="photo-card"><img src="photos/photo3.jpg"><p>Crazy Together 😂</p></div>
+<div class="photo-card"><img src="photos/photo4.jpg"><p>Forever Memories 💜</p></div>
+<div class="photo-card"><img src="photos/photo5.jpg"><p>Unforgettable Days ✨</p></div>
+<div class="photo-card"><img src="photos/photo6.jpg"><p>Bestie Moments 🫶</p></div>
+<div class="photo-card"><img src="photos/photo7.jpg"><p>Always Together ❤️</p></div>
+<div class="photo-card"><img src="photos/photo8.jpg"><p>Little Happiness 🌷</p></div>
+<div class="photo-card"><img src="photos/photo9.jpg"><p>Special Friendship 💕</p></div>
+
+</div>
+
+
+<!-- ENDING -->
+<div class="friendship">
+
+<h2>To More Memories Together! 💜</h2>
+
+<p>
+More laughter, more adventures, more silly conversations
+and more unforgettable memories.
+<br><br>
+Thank you for being YOU, Ayushi!
+<br><br>
+You deserve all the happiness in the world. 🌸
+</p>
+
+<div style="font-size:50px;margin-top:20px">
+💗 🫂 💗
+</div>
+
+</div>
+
+<h2 class="script" style="font-size:55px">
+Stay Happy Always! ✨
+</h2>
+
+<footer>
+Made with lots of love ❤️
+<br>
+A Special Birthday Surprise For Ayushi
+<br>
+Forever Best Friends ♾️
+</footer>
+
+</section>
+
+
+<script>
+
+let heartTimer = null;
+
+function wait(ms){
+return new Promise(resolve => setTimeout(resolve,ms));
+}
+
+
+// COUNTDOWN START
+
+async function startCountdown(){
+
+document.getElementById("opening").style.display="none";
+
+const countdown=document.getElementById("countdown");
+countdown.style.display="flex";
+
+const number=document.getElementById("countNumber");
+const text=document.getElementById("countText");
+
+for(let i=3;i>=1;i--){
+
+number.innerText=i;
+number.style.animation="none";
+void number.offsetWidth;
+number.style.animation="countZoom .8s ease";
+
+text.innerText="Get Ready Ayushi! 💜";
+
+await wait(1000);
+
+}
+
+number.innerText="🎉";
+text.innerText="HAPPY BIRTHDAY AYUSHI! ❤️";
+
+await wait(700);
+
+countdown.style.display="none";
+
+document.getElementById("birthday").style.display="block";
+document.getElementById("musicBtn").style.display="block";
+
+window.scrollTo(0,0);
+
+createConfetti();
+
+await playMusic();
+
+if(!heartTimer){
+heartTimer=setInterval(createHeart,600);
+}
+
+}
+
+
+// MUSIC PLAY
+
+async function playMusic(){
+
+let audio=document.getElementById("music");
+
+try{
+await audio.play();
+document.getElementById("musicBtn").innerText="🔊 Music ON";
+}
+catch(e){
+document.getElementById("musicBtn").innerText="▶ Play Music";
+}
+
+}
+
+
+// MUSIC ON/OFF
+
+function toggleMusic(){
+
+let audio=document.getElementById("music");
+
+if(audio.paused){
+playMusic();
+}
+else{
+audio.pause();
+document.getElementById("musicBtn").innerText="🔇 Music OFF";
+}
+
+}
+
+
+// CONFETTI
+
+function createConfetti(){
+
+let emojis=["💜","💖","🎉","✨","🌸","💕","🎊"];
+
+for(let i=0;i<100;i++){
+
+let item=document.createElement("div");
+
+item.className="confetti";
+
+item.innerText=emojis[Math.floor(Math.random()*emojis.length)];
+
+item.style.left=Math.random()*100+"vw";
+
+item.style.fontSize=(15+Math.random()*22)+"px";
+
+item.style.animationDuration=(2+Math.random()*3)+"s";
+
+document.body.appendChild(item);
+
+setTimeout(()=>item.remove(),5000);
+
+}
+
+}
+
+
+// FLOATING HEARTS
+
+function createHeart(){
+
+let heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerText=["💗","💜","💕","✨","🌸"][Math.floor(Math.random()*5)];
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=(18+Math.random()*20)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),6000);
+
+}
+
+</script>
+
+</body>
+</html>
